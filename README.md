@@ -15,3 +15,12 @@ Okay so the overlapping numbers are really tricky, i'd love to solve this in reg
 Here is a good example of the regex problem https://rubular.com/r/u7gmmN6nQqTp83 thanks to Travis' help constructing `ninezjtxp7bpzdgtoneeightoneighth`, this is nasty.
 
 A quck google and a bunch of stack overflows that all look kinda like [this one](https://stackoverflow.com/a/44642092/5419). Fine so lets walk the string and snag the matches without regexp...
+
+## Day 2
+
+Part 1:
+I sure would love to use soemthigng other than javascript... hmm.. maybe not this one though?
+Okay i stuck with javascript.
+Huh, so much string splitting, mixed with a bit of Math.max
+
+Oh well on to Part 2.
