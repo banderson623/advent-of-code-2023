@@ -24,3 +24,7 @@ Okay i stuck with javascript.
 Huh, so much string splitting, mixed with a bit of Math.max
 
 Oh well on to Part 2.
+
+So the work from part 1 to part 2 was much easier than yesterday's. Interesting. Anyway same strategy, but instead of an `if` check, just multiply the max discovered.
+
+I was expecting a tricky _something_ but that didn't happen.
