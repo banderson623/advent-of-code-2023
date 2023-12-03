@@ -43,17 +43,6 @@ for(match of foundNumbers) {
   const surroundingStrings = stringBefore + stringAfter + stringsAbove + stringsBelow;
   const isPartNumber = SYMBOLS_PATTERN.test(surroundingStrings)
 
-  // if(isPartNumber){
-    // console.log(value, surroundingStrings, isPartNumber, surroundingStrings.match(SYMBOLS_PATTERN)?.[0])
-  // }
-
-  // console.log(stringsAbove)
-  // console.log(stringBefore + value + stringAfter, isPartNumber)
-  // console.log(stringsBelow)
-
-
-  // console.log(parseInt(value), value, value == parseInt(value))
-
   if(isPartNumber) {
     sum += parseInt(value)
   }
