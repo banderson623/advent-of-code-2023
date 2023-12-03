@@ -28,3 +28,15 @@ Oh well on to Part 2.
 So the work from part 1 to part 2 was much easier than yesterday's. Interesting. Anyway same strategy, but instead of an `if` check, just multiply the max discovered.
 
 I was expecting a tricky _something_ but that didn't happen.
+
+
+## Day 3
+
+Part 1:
+So I was trying to have some fun without walking a 2d grid with 2 for loops. It was _medium_ successful. I got stuck when one line ended with a number and the next line started with a number. (Since I was using regex to identify numbers). Once I got that solved, it was smooth sailing.
+
+
+Part 2:
+So the strategy is to find all the gears first. Then I can locate the part numbers like before. And if the surrounding symbol is a gear, record that location. Then later walk through all the gears and map together the surrounding parts.
+
+Honestly not thrilled with my code here.
