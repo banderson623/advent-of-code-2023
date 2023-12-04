@@ -9,7 +9,7 @@ const NUMBERS = {
 
 const lines = fs.readFileSync('input.txt', 'utf8')
                 .toLowerCase()
-                // Hey let's replace all the possible collisions with non-colission words
+                // Hey let's replace all the possible intersecting words with non-intersecting words
                 // and know that all of them still contain their base number to be slurped
                 // up by the regex below.
                 //    example: `twone` (two and one intersecting) becomes `ttwoone`
