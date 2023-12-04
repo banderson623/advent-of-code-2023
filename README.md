@@ -40,3 +40,11 @@ Part 2:
 So the strategy is to find all the gears first. Then I can locate the part numbers like before. And if the surrounding symbol is a gear, record that location. Then later walk through all the gears and map together the surrounding parts.
 
 Honestly not thrilled with my code here.
+
+## Day 4
+
+Let's do some ruby.
+
+Okay that took too long to get rbenv, and then vs code working with it all. Meh.
+
+Anyway this was straightforward once I remembered the string splitting and regex commands in ruby. I did get bit by fractional matches for a second.
