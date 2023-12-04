@@ -47,4 +47,9 @@ Let's do some ruby.
 
 Okay that took too long to get rbenv, and then vs code working with it all. Meh.
 
-Anyway this was straightforward once I remembered the string splitting and regex commands in ruby. I did get bit by fractional matches for a second.
+Step 1: Anyway this was straightforward once I remembered the string splitting and regex commands in ruby. I did get bit by fractional matches for a second.
+
+
+Step 2: I'd like to handle this by adding a card multiplier, such that every match founds increments the multiplier for that card.... oops, so I was not trying to get the sum of winnings, rather the total count of cards.
+
+Anyway same strategy, use a multiplier to serve as the number of times a card should be counted.
