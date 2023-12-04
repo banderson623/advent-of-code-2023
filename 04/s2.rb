@@ -6,13 +6,11 @@ File.foreach("input.txt") do |card|
 
   _,label, winning, scratched = /(.*):(.*)\|(.*)/.match(card).to_a
 
-  card_value = 0
   matches_found = 0
   winning.split(' ').map{|v| " #{v} "}.each do |value|
     scratched+=" "
     if scratched.include? value
       matches_found += 1
-      card_value = card_value == 0 ? 1 : card_value * 2
     end
   end
 
@@ -22,8 +20,7 @@ File.foreach("input.txt") do |card|
     multipliers[card_number + number] += multipliers[card_number]
   end
 
-  # puts "#{label} -> #{card_value} (#{multipliers})"
-
+  # puts "#{label} -> #{matches_found} (#{multipliers})"
   card_number += 1
 end
 
