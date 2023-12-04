@@ -24,13 +24,12 @@ const lines = fs.readFileSync('input.txt', 'utf8')
 let total = 0;
 for(let line of lines) {
   // split em by number or word number
-  numbers = line.match(RegExp(`(${Object.keys(NUMBERS).join('|')})`,'g'))
-                // map them into digits
-                .map(word => NUMBERS[word])
-                // make sure they are all strings
-                .map(word => `${word}`)
+  const numbers = line.match(RegExp(`(${Object.keys(NUMBERS).join('|')})`,'g'))
+                      // map them into digits
+                      .map(word => NUMBERS[word])
+                      // make sure they are all strings
+                      .map(word => `${word}`)
 
-  // const numbers = extractNumbers(line)
   console.log(line,'->', `${numbers.at(0)}${numbers.at(-1)}`)
 
   // string smash them together, then convert them to an integer
