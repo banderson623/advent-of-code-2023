@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-lines = fs.readFileSync('01-calibration.txt', 'utf8')
+lines = fs.readFileSync('input.txt', 'utf8')
           .split('\n')
           .filter(line => !!line)
 
