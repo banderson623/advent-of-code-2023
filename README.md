@@ -55,3 +55,7 @@ Step 2: I'd like to handle this by adding a card multiplier, such that every mat
 Anyway same strategy, use a multiplier to serve as the number of times a card should be counted.
 
 (it was fun to use ruby, it took me about 4x as long to go from solution to syntax, but that is to be expected.)
+
+I remembered nice things about ruby:
+* Hash can have a default value `Hash.new(1)` this was nice!
+* Ranges, just a pleasure in general. But also a range of `(1..0).each do` won't ever execute and I used this as a shortcut.
