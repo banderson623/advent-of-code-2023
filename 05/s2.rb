@@ -1,3 +1,5 @@
+file_name = "input.txt"
+
 class LookUpMap
   attr_reader :name, :from, :to
 
@@ -25,7 +27,7 @@ end
 
 seed_ranges = []
 
-seed_line = File.foreach('input.txt').first
+seed_line = File.foreach(file_name).first
 _, seed_string = seed_line.match(/^seeds:\s(.*)/).to_a
 
 seed_string.scan(/(([0-9]+) ([0-9]+))+/) do |match|
@@ -39,7 +41,7 @@ maps = []
 current_map = nil
 current_numbers = []
 
-File.foreach("input.txt") do |line|
+File.foreach(file_name) do |line|
 
   # discover map name
   if current_map.nil? && line.match(/map:$/)
@@ -61,27 +63,22 @@ File.foreach("input.txt") do |line|
 end
 maps <<  LookUpMap.new(current_map, current_numbers)
 
-locations = []
-cache = {}
+smallest_location = 100_000_000_000_000
 
 seed_ranges.each do |seed_range|
-  pp seed_range
-  seed_range.each do |seed|
-    if cache.has_key?(seed)
-      print '**************'
-      return cache[seed]
-    end
 
+  seed_range.each_with_index do |value, index|
+    print "\r value: #{((index.to_f/seed_range.size.to_f) * 100).round} #{value} #{smallest_location}"
 
     # take advantage of their order in the input
-    value = seed
     maps.each do |map|
       value = map.map(value)
     end
 
-    cache[seed] = value
-    locations.push(value)
+    smallest_location = value if value < smallest_location
+
   end
 end
 
-puts "Smallest location: #{locations.sort.first}"
+puts "Smallest location: #{smallest_location}"
+
