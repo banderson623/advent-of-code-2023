@@ -59,3 +59,14 @@ Anyway same strategy, use a multiplier to serve as the number of times a card sh
 I remembered nice things about ruby:
 * Hash can have a default value `Hash.new(1)` this was nice!
 * Ranges, just a pleasure in general. But also a range of `(1..0).each do` won't ever execute and I used this as a shortcut.
+
+
+# Day 5
+
+Wow this is a lot of instructions.
+
+Step 1: Once you read through it all, and get it. There are a few things to do:
+1. parse the file into maps
+2. determine the applicable ranges (thanks ruby for Range)
+3. calculate the offsets and go
+Not bad, and I got it on my first try!
