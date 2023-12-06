@@ -105,3 +105,13 @@ Map: light-to-temperature, buckets going in 19, buckets coming out 24
 Map: temperature-to-humidity, buckets going in 24, buckets coming out 28
 Map: humidity-to-location, buckets going in 28, buckets coming out 31
 ```
+
+# Day 6 here we go.
+
+Let's use Swift!
+
+Okay installed the [swift language server in VScode](https://marketplace.visualstudio.com/items?itemName=sswg.swift-lang).
+
+I can run it with `swift s1.swift`
+
+
