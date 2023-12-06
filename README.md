@@ -70,3 +70,38 @@ Step 1: Once you read through it all, and get it. There are a few things to do:
 2. determine the applicable ranges (thanks ruby for Range)
 3. calculate the offsets and go
 Not bad, and I got it on my first try!
+
+Step 2: okay welp, my solution is so ineqadequate for step 2. I banged my head against a few performance improvements, but never got there.
+
+So I am now going to try and run the whole thing in reverse (thankful Casey reminded me that locations pass through, so there are more than what is listed...)
+
+okay so I could NOT solve it with the reverse strategy, it kinda sucked. I worked on it for a while but it never revealed the error. [I gave reddit a glance](https://www.reddit.com/r/adventofcode/comments/18buwiz/2023_day_5_part_2_can_someone_explain_a_more/) (gosh I hate reddit's interface). But anyway, they talked a lot about collapsing maps (which sounds like what Travis was working on).
+
+I am going to check that out now... I made `05/2.2.rb` to try this solution
+
+it worked ⭐ ! And "collapsing maps" isn't the right name. Instead it's about treating your ranges as the input (not walking the values in those ranges). The basic strategy would be to:
+
+1. Take the whole array of seed ranges as input. So if my seed range arrays looked like `[(1..300), (400..600)]` I could say I have two buckets of 500 total seeds. _(remember the real input data for seeds is NN billion of them)_
+2. Send these two buckets of seeds into the first map: `seed-to-soil` and apply the transforms to the ranges. So if `seed-to-soil` had say two different transforms like `1000 100 300` and `4000 400 200`, then those transforms applied to each bucket and the outgoing "seed ranges" (which were now soil ranges) would be offset by 900 and 3600 respectively. And they would be `[(900..1200), (4000..4200)]`
+3. Continue this again for `soil-to-fertilizer`...
+
+
+This was a good strategy, admittedly one I would not have gotten to on my own. There are really two tricks here to be mindful of:
+
+1. I need to fill the gaps in any transform/maps (like `soil-to-fertilizer`). And most maps have one gap in them (just to get you). Gaps can be "filled" by passing the range through without an offset. So this means that with the sample data in `water-to-light` there is a hole at 0-18, so it's like I needed to add a new line to that map, that read `0 0 18`, which means for values between 0 and 18, apply no offset let them "pass through"
+
+2. Not all incoming ranges are going to map perfectly to the transforms specified in the maps. So now you have a couple of options when the transform doesn't cover an incoming range (remember it's an array of ranges being offset/mapped by an array of transforms).
+   - The range is beyond/larger-than the defined transforms completely in which case it's a pass through with zero offset/transform.
+   - The range saddles two transforms, and therefor the range needs to be split. That strategy is about finding the slice point and cutting it, then applying the correct transforms to your two halves (they won't have the same offset).
+   - Be mindful of more than one split required (I am not sure if that exists, but my code allows for it). This was about taking care of the remaind er after a split and running it back through the loop.
+
+
+```
+Map: seed-to-soil, buckets going in 10, buckets coming out 12
+Map: soil-to-fertilizer, buckets going in 12, buckets coming out 12
+Map: fertilizer-to-water, buckets going in 12, buckets coming out 17
+Map: water-to-light, buckets going in 17, buckets coming out 19
+Map: light-to-temperature, buckets going in 19, buckets coming out 24
+Map: temperature-to-humidity, buckets going in 24, buckets coming out 28
+Map: humidity-to-location, buckets going in 28, buckets coming out 31
+```

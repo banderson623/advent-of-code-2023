@@ -16,7 +16,7 @@ class LookUpMap
   def map(source)
     @data.each do |mapped|
       if(mapped.first.include?(source))
-        # puts "#{@from} -> #{@to} (#{source} -> #{source + mapped.last})"
+        puts "#{@from} -> #{@to} (#{source} -> #{source + mapped.last})"
         return source + mapped.last
       end
     end
