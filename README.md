@@ -127,3 +127,10 @@ Step 2, but faster: okay that wasn't ideal. It was too slow. So I tried a new st
 3. Find the number of possibilities between then (last win - first win + 1)
 
 This was great, finished in 1/2 a second.
+
+
+# Day 7 - cards
+
+This will be challenging with swift. I am goig to have to learn how to do string manipulation much better.
+
+`nodemon --exec "swift -no-warnings-as-errors" s1.swift`
