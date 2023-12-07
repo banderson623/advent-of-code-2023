@@ -35,5 +35,5 @@ let winningStrategies = findWinningStrategies(race: Race(
     record: records[0]
 ))
 
-print("Sum of winning number of strategies \(winningStrategies.count)")
+print("Number of winning strategies \(winningStrategies.count)")
 
