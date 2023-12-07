@@ -114,4 +114,8 @@ Okay installed the [swift language server in VScode](https://marketplace.visuals
 
 I can run it with `swift s1.swift`
 
+And better I can use [nodemon](https://www.npmjs.com/package/nodemon) to run swift! `nodemon --exec "swift" s1.swift`
 
+Swift file and string parsing is absolutely terrible, relative to javascript and ruby. I gave up parsing the string or file... and just hard coded the values in a reasonable structure.
+
+Anyway the first part was pretty straightforward and 😴 a nice warm up with swift.
