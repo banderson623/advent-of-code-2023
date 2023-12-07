@@ -118,4 +118,12 @@ And better I can use [nodemon](https://www.npmjs.com/package/nodemon) to run swi
 
 Swift file and string parsing is absolutely terrible, relative to javascript and ruby. I gave up parsing the string or file... and just hard coded the values in a reasonable structure.
 
-Anyway the first part was pretty straightforward and 😴 a nice warm up with swift.
+Step 1: Anyway the first part was pretty straightforward and 😴 a nice warm up with swift.
+
+Step 2: I lucked out at using a compiled language, that was fast enough. It finished in 16 sec.
+Step 2, but faster: okay that wasn't ideal. It was too slow. So I tried a new strategy:
+1. Walk the possibilities until the first win is encountered.
+2. Walk the possibilities backward until the first win is encountered (but it's really the last win).
+3. Find the number of possibilities between then (last win - first win + 1)
+
+This was great, finished in 1/2 a second.
