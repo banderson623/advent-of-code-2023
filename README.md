@@ -133,4 +133,23 @@ This was great, finished in 1/2 a second.
 
 This will be challenging with swift. I am goig to have to learn how to do string manipulation much better.
 
-`nodemon --exec "swift -no-warnings-as-errors" s1.swift`
+Okay so I got some basic competency with split and sort and iterate through strings... but i got totally stumpted on how to do Regex with swift (especially backreference )
+
+```swift
+let sortedCards = self.cards.sorted().map{ String($0) }.joined()
+print(sortedCards)
+
+let treeOfAKind = /(\S)\\1\\1\\1/
+
+if (sortedCards.contains(try! Regex("(\\S)\\1\\1\\1\\1\\1"))) { return .FiveOfAKind}
+// if (sortedCards.contains(try! Regex(#"(\S)\1\1\1\1"#))) { return .FourOfAKind}
+// if (sortedCards.contains(try! Regex(#"(\S)\1\1\1|(\S)\2\2/)"#))) { return .FullHouse}
+// if (sortedCards.contains(try! Regex("(\\S)\\1\\1\\1"))) { return .ThreeOfAKind}
+if (sortedCards.contains(treeOfAKind)) { return .ThreeOfAKind}
+// if (sortedCards.contains(try! Regex(#"(\S)\1\1|(\S)\2\2/)"#))) { return .TwoPair}
+// if (sortedCards.contains(try! Regex(#"(\S)\1\1"#))) { return .OnePair}
+```
+
+I will now try to walk the strings like a simpleton
+
+`nodemon --exec "swift -no-warnings-as-errors -enable-bare-slash-regex" s1.swift`
