@@ -19,26 +19,6 @@ impl LeftRight {
   }
 }
 
-fn recursive_journey(map: &GhostMap, instructions: &String, location: String, step:u32) -> u32 {
-  // https://stackoverflow.com/a/71824291/5419
-  let relative_step = usize::try_from(step).unwrap() % instructions.as_bytes().len();
-
-  let direction = instructions.chars().nth(relative_step).unwrap();
-
-  let options: &LeftRight = map.get(&location).unwrap();
-  let next_location: &String = if direction == 'L' {&options.0} else {&options.1};
-
-  // println!("at: {}, choices: {:#?} lets take a step {}, going {} which is {}", location, options, step, direction, next_location);
-  println!("at: {} going to {}", location, next_location);
-
-  if next_location != "ZZZ" {
-    let nex_step = step + 1;
-    return recursive_journey(&map, &instructions, next_location.to_string(), nex_step);
-  } else {
-    return step;
-  }
-}
-
 fn journey(map: &GhostMap, instructions: &String, location: String, step:u32) -> String {
   // https://stackoverflow.com/a/71824291/5419
   let relative_step = usize::try_from(step).unwrap() % instructions.as_bytes().len();
@@ -91,8 +71,6 @@ fn main() {
   }
 
   // println!("instructions: {}, map: {:#?}", left_and_right_instructions, map);
-  // println!("All done, i took {} step(s)", recursive_journey(&map, &left_and_right_instructions, "AAA".to_string(), 0) + 1 )
-
   let mut step:u32 = 0;
   let mut location: String = "AAA".to_string();
   loop {
