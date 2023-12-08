@@ -4,7 +4,6 @@ let listOfHands = try String(contentsOf:
   URL(fileURLWithPath: FileManager.default.currentDirectoryPath).appendingPathComponent("input.txt")
 )
 
-
 // Int here makes them comparible
 enum HandType: Int {
   case FiveOfAKind = 7
@@ -80,16 +79,12 @@ for handRow in listOfHands.split(separator: "\n") {
 
   let hand = Hand(cards: String(cards), bid: bid)
   hands.append(hand)
-
-//  print(hand, hand.type())
 }
-
-//print(hands.sorted())
 
 var winnings = 0
 for (index, hand) in hands.sorted().enumerated() {
   let rank = hands.count - index
-  print ("\(rank) - \(hand.cards) - \(hand.bid) * \(rank) = \(hand.bid * rank)")
+  // print ("\(rank) - \(hand.cards) - \(hand.bid) * \(rank) = \(hand.bid * rank)")
   winnings = winnings + (hand.bid * rank)
 }
 
