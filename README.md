@@ -133,7 +133,7 @@ This was great, finished in 1/2 a second.
 
 This will be challenging with swift. I am goig to have to learn how to do string manipulation much better.
 
-Okay so I got some basic competency with split and sort and iterate through strings... but i got totally stumpted on how to do Regex with swift (especially backreference )
+Step 1: Okay so I got some basic competency with split and sort and iterate through strings... but i got totally stumpted on how to do Regex with swift (especially backreference )
 
 ```swift
 let sortedCards = self.cards.sorted().map{ String($0) }.joined()
@@ -150,6 +150,13 @@ if (sortedCards.contains(treeOfAKind)) { return .ThreeOfAKind}
 // if (sortedCards.contains(try! Regex(#"(\S)\1\1"#))) { return .OnePair}
 ```
 
-I will now try to walk the strings like a simpleton
+I will now try to walk the strings like a simpleton.
+Okay so the strategy was pretty simple, but the implementation was so dang rough. I am bad enough at swift and also swift isn't great for string parsing and such.
+
+No worries, got to learn how to implement the Comparable protocol, and that was fun. The code is straightforward enough I won't explain it here.
+
+I will say, once I had the test case working, the big one worked on the first try.
+
+On to Step 2
 
 `nodemon --exec "swift -no-warnings-as-errors -enable-bare-slash-regex" s1.swift`

@@ -1,12 +1,9 @@
 import Foundation
 
-let listOfHands = """
-32T3K 765
-T55J5 684
-KK677 28
-KTJJT 220
-QQQJA 483
-"""
+let listOfHands = try String(contentsOf:
+  URL(fileURLWithPath: FileManager.default.currentDirectoryPath).appendingPathComponent("input.txt")
+)
+
 
 // Int here makes them comparible
 enum HandType: Int {
@@ -19,8 +16,14 @@ enum HandType: Int {
   case HighCard = 1
 }
 
+// index is value
+let CARD_VALUE = ["2","3","4","5","6","7","8","9","T","J","Q","K","A"]
 
-struct Hand {
+func cardValue(_ card:String.Element) -> Int {
+  return CARD_VALUE.firstIndex(of:String(card)) ?? 0
+}
+
+struct Hand: Comparable {
   var cards: String = ""
   var bid: Int = 0
 
@@ -30,23 +33,41 @@ struct Hand {
   }
 
   func type() -> HandType {
-    let sortedCards = self.cards.sorted().map{ String($0) }.joined()
-    print(sortedCards)
+    var counts: [String.SubSequence: Int] = [:]
 
-    let treeOfAKind = /(\S)\\1\\1\\1/
+    for card in cards.split(separator: "") {
+      counts[card] = counts[card, default: 0] + 1
+    }
 
-    if (sortedCards.contains(try! Regex("(\\S)\\1\\1\\1\\1\\1"))) { return .FiveOfAKind}
-    // if (sortedCards.contains(try! Regex(#"(\S)\1\1\1\1"#))) { return .FourOfAKind}
-    // if (sortedCards.contains(try! Regex(#"(\S)\1\1\1|(\S)\2\2/)"#))) { return .FullHouse}
-    // if (sortedCards.contains(try! Regex("(\\S)\\1\\1\\1"))) { return .ThreeOfAKind}
-    if (sortedCards.contains(treeOfAKind)) { return .ThreeOfAKind}
-    // if (sortedCards.contains(try! Regex(#"(\S)\1\1|(\S)\2\2/)"#))) { return .TwoPair}
-    // if (sortedCards.contains(try! Regex(#"(\S)\1\1"#))) { return .OnePair}
+    if(counts.filter { $0.value == 5 }.count == 1) { return HandType.FiveOfAKind }
+    if(counts.filter { $0.value == 4 }.count == 1) { return HandType.FourOfAKind }
+    if(counts.filter({ $0.value == 3 }).count == 1) && counts.filter({ $0.value == 2 }).count > 0 { return HandType.FullHouse }
+    if(counts.filter { $0.value == 3 }.count == 1) { return HandType.ThreeOfAKind }
+    if(counts.filter { $0.value == 2 }.count == 2) { return HandType.TwoPair }
+    if(counts.filter { $0.value == 2 }.count == 1) { return HandType.OnePair }
 
     return .HighCard
   }
 
+  // from the Comparable protocol
+  static func <(lhs: Hand, rhs: Hand) -> Bool {
+    if(lhs.type() == rhs.type()){
+      // i dunno how else to get the index of each character, not throlled about this
+      let lhsCards = Array(lhs.cards)
+      let rhsCards = Array(rhs.cards)
+
+      for cardNumber in 0...4 {
+        if cardValue(lhsCards[cardNumber]) > cardValue(rhsCards[cardNumber]) { return true }
+        if cardValue(lhsCards[cardNumber]) < cardValue(rhsCards[cardNumber]) { return false }
+      }
+    }
+
+    return lhs.type().rawValue > rhs.type().rawValue
+  }
+
 }
+
+var hands:[Hand] = []
 
 for handRow in listOfHands.split(separator: "\n") {
   let handParts  = handRow.split(separator: " ")
@@ -58,5 +79,18 @@ for handRow in listOfHands.split(separator: "\n") {
   let bid = Int(handParts.last!) ?? 0
 
   let hand = Hand(cards: String(cards), bid: bid)
-  print(hand, hand.type())
+  hands.append(hand)
+
+//  print(hand, hand.type())
 }
+
+//print(hands.sorted())
+
+var winnings = 0
+for (index, hand) in hands.sorted().enumerated() {
+  let rank = hands.count - index
+  print ("\(rank) - \(hand.cards) - \(hand.bid) * \(rank) = \(hand.bid * rank)")
+  winnings = winnings + (hand.bid * rank)
+}
+
+print("winnings: \(winnings)")
