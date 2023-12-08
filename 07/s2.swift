@@ -16,7 +16,7 @@ enum HandType: Int {
 }
 
 // index is value
-let CARD_VALUE = ["2","3","4","5","6","7","8","9","T","J","Q","K","A"]
+let CARD_VALUE = ["J", "2","3","4","5","6","7","8","9","T","Q","K","A"]
 
 func cardValue(_ card:String.Element) -> Int {
   return CARD_VALUE.firstIndex(of:String(card)) ?? 0
@@ -25,32 +25,46 @@ func cardValue(_ card:String.Element) -> Int {
 struct Hand: Comparable {
   var cards: String = ""
   var bid: Int = 0
+  var type: HandType = .HighCard
 
   init(cards: String, bid: Int) {
     self.cards = cards
     self.bid = bid
+    self.type = self.calcType()
   }
 
-  func type() -> HandType {
+  private func calcType() -> HandType {
     var counts: [String.SubSequence: Int] = [:]
 
     for card in cards.split(separator: "") {
       counts[card] = counts[card, default: 0] + 1
     }
 
-    if(counts.filter { $0.value == 5 }.count == 1) { return HandType.FiveOfAKind }
-    if(counts.filter { $0.value == 4 }.count == 1) { return HandType.FourOfAKind }
-    if(counts.filter({ $0.value == 3 }).count == 1) && counts.filter({ $0.value == 2 }).count > 0 { return HandType.FullHouse }
-    if(counts.filter { $0.value == 3 }.count == 1) { return HandType.ThreeOfAKind }
-    if(counts.filter { $0.value == 2 }.count == 2) { return HandType.TwoPair }
-    if(counts.filter { $0.value == 2 }.count == 1) { return HandType.OnePair }
+    let numberOfJokers = counts["J"] ?? 0
+
+    print(cards, numberOfJokers, counts)
+    counts["J"] = 0
+
+    if(counts.filter { $0.value >= 5 - numberOfJokers }.count >= 1){ return HandType.FiveOfAKind }
+    if(counts.filter { $0.value >= 4 - numberOfJokers }.count >= 1) { return HandType.FourOfAKind }
+
+    if(counts.filter { $0.value >= 3 - numberOfJokers }.count == 2) { return HandType.FullHouse }
+    if counts.filter({ $0.value == 3 }).count == 1 &&
+       counts.filter({ $0.value == 2 }).count > 0 {
+        return HandType.FullHouse
+    }
+
+
+    if(counts.filter { $0.value >= 3 - numberOfJokers }.count >= 1) { return HandType.ThreeOfAKind }
+    if(counts.filter { $0.value >= 2 - numberOfJokers }.count == 2) { return HandType.TwoPair }
+    if(counts.filter { $0.value >= 2 - numberOfJokers }.count >= 1) { return HandType.OnePair }
 
     return .HighCard
   }
 
   // from the Comparable protocol
   static func <(lhs: Hand, rhs: Hand) -> Bool {
-    if(lhs.type() == rhs.type()){
+    if(lhs.type == rhs.type){
       // i dunno how else to get the index of each character, not throlled about this
       let lhsCards = Array(lhs.cards)
       let rhsCards = Array(rhs.cards)
@@ -61,7 +75,7 @@ struct Hand: Comparable {
       }
     }
 
-    return lhs.type().rawValue > rhs.type().rawValue
+    return lhs.type.rawValue > rhs.type.rawValue
   }
 
 }
@@ -84,7 +98,7 @@ for handRow in listOfHands.split(separator: "\n") {
 var winnings = 0
 for (index, hand) in hands.sorted().enumerated() {
   let rank = hands.count - index
-  print ("\(rank) - \(hand.cards) - \(hand.bid) * \(rank) = \(hand.bid * rank)")
+  print ("\(rank) - \(hand.cards) - \(hand.type) - \(hand.bid) * \(rank) = \(hand.bid * rank)")
   winnings = winnings + (hand.bid * rank)
 }
 
