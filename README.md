@@ -194,3 +194,11 @@ Let's get out of here. I am going to try Rust, which I haven't even written hell
 3. Install this extension: https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer
 
 Not using the cargo build and having a src directory might make this thing grumpy, but that is okay.
+
+... alright I got step 1 complete. A few thoughts:
+* Rust is pretty fun, happy I tried it.
+* I suspect my lack of awareness of rust will prove very problematic in step 2.
+* Ownership is interesting and it's still very fuzzy to me. Mostly still seeing warnings and squashing them.
+* Recursive strategy failed due to stack depth woes, that is fine, easy fix.
+
+on to step 2!
