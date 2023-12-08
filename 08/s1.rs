@@ -4,6 +4,7 @@ use std::path::Path;
 use std::collections::HashMap;
 use std::convert::TryFrom;
 
+const FILENAME:&str = "./input.txt";
 
 #[derive(Debug)]
 struct LeftRight(String, String);
@@ -18,9 +19,8 @@ impl LeftRight {
   }
 }
 
-fn journey(map: &GhostMap, instructions: &String, location: String, step:u32) -> u32 {
+fn recursive_journey(map: &GhostMap, instructions: &String, location: String, step:u32) -> u32 {
   // https://stackoverflow.com/a/71824291/5419
-  // and this "as" is not super safe across platforms, so let's be careful in the future with this syntax
   let relative_step = usize::try_from(step).unwrap() % instructions.as_bytes().len();
 
   let direction = instructions.chars().nth(relative_step).unwrap();
@@ -28,14 +28,29 @@ fn journey(map: &GhostMap, instructions: &String, location: String, step:u32) ->
   let options: &LeftRight = map.get(&location).unwrap();
   let next_location: &String = if direction == 'L' {&options.0} else {&options.1};
 
-  println!("at: {}, choices: {:#?} lets take a step {}, going {} which is {}", location, options, step, direction, next_location);
+  // println!("at: {}, choices: {:#?} lets take a step {}, going {} which is {}", location, options, step, direction, next_location);
+  println!("at: {} going to {}", location, next_location);
 
   if next_location != "ZZZ" {
     let nex_step = step + 1;
-    return journey(&map, &instructions, next_location.to_string(), nex_step);
+    return recursive_journey(&map, &instructions, next_location.to_string(), nex_step);
   } else {
     return step;
   }
+}
+
+fn journey(map: &GhostMap, instructions: &String, location: String, step:u32) -> String {
+  // https://stackoverflow.com/a/71824291/5419
+  let relative_step = usize::try_from(step).unwrap() % instructions.as_bytes().len();
+
+  let direction = instructions.chars().nth(relative_step).unwrap();
+
+  let options: &LeftRight = map.get(&location).unwrap();
+  let next_location: &String = if direction == 'L' {&options.0} else {&options.1};
+
+  println!("at: {} going {} to {} (step: {})", location, direction, next_location, step);
+
+  return next_location.to_string();
 }
 
 type GhostMap = HashMap<String, LeftRight>;
@@ -43,13 +58,10 @@ type GhostMap = HashMap<String, LeftRight>;
 fn main() {
   println!("Day 8: Step 1");
 
-  let filename = "./test.txt";
   let mut left_and_right_instructions = String::from("");
   let mut map: GhostMap = GhostMap::new();
 
-  // File hosts.txt must exist in the current path
-  if let Ok(lines) = read_lines(filename) {
-    // Consumes the iterator, returns an (Optional) String
+  if let Ok(lines) = read_lines(FILENAME) {
     for line in lines {
       if let Ok(value) = line {
 
@@ -79,7 +91,18 @@ fn main() {
   }
 
   // println!("instructions: {}, map: {:#?}", left_and_right_instructions, map);
-  println!("All done, i took {} step(s)", journey(&map, &left_and_right_instructions, "AAA".to_string(), 0) + 1 )
+  // println!("All done, i took {} step(s)", recursive_journey(&map, &left_and_right_instructions, "AAA".to_string(), 0) + 1 )
+
+  let mut step:u32 = 0;
+  let mut location: String = "AAA".to_string();
+  loop {
+    location = journey(&map, &left_and_right_instructions, location, step);
+    if location == "ZZZ" {
+      println!("all done, I took {} steps", step +1 );
+      break()
+    }
+    step += 1;
+  }
 
 }
 
