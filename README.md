@@ -5,6 +5,9 @@ I was thinking about doing these in different languages, but we'll see....
 
 
 ## Day 1
+
+https://adventofcode.com/2023/day/1
+
 `nvm use; node 01-calibration.js`
 
 First one was pretty simple, extract the digits into an array. Then from there snag the first and last via `.a()` with 0 and -1. Smoosh them together as strings, then convert them into an integer and sum all the ones in the line.
@@ -17,6 +20,8 @@ Here is a good example of the regex problem https://rubular.com/r/u7gmmN6nQqTp83
 A quick google and a bunch of stack overflows that all look kinda like [this one](https://stackoverflow.com/a/44642092/5419). Fine so lets walk the string and snag the matches without regexp. _... meh, less fun with this strategy_
 
 ## Day 2
+
+https://adventofcode.com/2023/day/2
 
 Part 1:
 I sure would love to use soemthigng other than javascript... hmm.. maybe not this one though?
@@ -32,6 +37,8 @@ I was expecting a tricky _something_ but that didn't happen.
 
 ## Day 3
 
+https://adventofcode.com/2023/day/3
+
 Part 1:
 So I was trying to have some fun without walking a 2d grid with 2 for loops. It was _medium_ successful. I got stuck when one line ended with a number and the next line started with a number. (Since I was using regex to identify numbers). Once I got that solved, it was smooth sailing.
 
@@ -42,6 +49,8 @@ So the strategy is to find all the gears first. Then I can locate the part numbe
 Honestly not thrilled with my code here.
 
 ## Day 4
+
+https://adventofcode.com/2023/day/4
 
 Let's do some ruby.
 
@@ -62,6 +71,8 @@ I remembered nice things about ruby:
 
 
 # Day 5
+
+https://adventofcode.com/2023/day/5
 
 Wow this is a lot of instructions.
 
@@ -108,6 +119,8 @@ Map: humidity-to-location, buckets going in 28, buckets coming out 31
 
 # Day 6 here we go.
 
+https://adventofcode.com/2023/day/6
+
 Let's use Swift!
 
 Okay installed the [swift language server in VScode](https://marketplace.visualstudio.com/items?itemName=sswg.swift-lang).
@@ -130,6 +143,11 @@ This was great, finished in 1/2 a second.
 
 
 # Day 7 - cards
+
+https://adventofcode.com/2023/day/7
+
+_my cheat code, to remember how to run swift with nodemon..._
+`nodemon --exec "swift -no-warnings-as-errors -enable-bare-slash-regex" s1.swift`
 
 This will be challenging with swift. I am goig to have to learn how to do string manipulation much better.
 
@@ -159,4 +177,20 @@ I will say, once I had the test case working, the big one worked on the first tr
 
 On to Step 2
 
-`nodemon --exec "swift -no-warnings-as-errors -enable-bare-slash-regex" s1.swift`
+So step 2 was easier because of the per character scanning I was doing. I suppose fortune favors... well... the regex-baffled at times. The strategy was simple and I only got stumped once on how to make sure I am not double counting the benefits of the jokers.
+
+I also cleaned up the silly call to the function (to calc value) and instead memoized that upon initialization. All good.
+
+I am happy to move on from swift.
+
+# Day 8 – Camel Riding Ghost Maps
+
+https://adventofcode.com/2023/day/8
+
+Let's get out of here. I am going to try Rust, which I haven't even written hello world in before 😬, what could go wrong?
+
+1. Get Rust installed: https://www.rust-lang.org/learn/get-started
+2. Read about setting up VS Code: https://code.visualstudio.com/docs/languages/rust
+3. Install this extension: https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer
+
+Not using the cargo build and having a src directory might make this thing grumpy, but that is okay.
