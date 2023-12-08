@@ -1,0 +1,10 @@
+
+[package]
+name = "AoC-2024-day-8" # the name of the package
+version = "0.0.1"    # the current version, obeying semver
+
+[[bin]]
+name = "step-1"
+path = "./s1.rs"
+test = false
+bench = false
