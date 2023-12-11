@@ -1,0 +1,10 @@
+
+[package]
+name = "AoC-2024-day-9"
+version = "0.0.1"
+
+[[bin]]
+name = "step-1"
+path = "./s1.rs"
+test = false
+bench = false

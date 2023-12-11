@@ -213,3 +213,10 @@ MPA -> 19631
 TDA -> 12599
 
 Then I used least common multiplier to find the total number of trips required until we all got there
+
+# Day 9
+
+Okay this is a super fun problem.
+
+When I looked at Rust solutions from Day 8, I saw a lot of very slick string parsing patterns and borrowed heavily from [this example](https://github.com/chrismo80/advent_of_code/blob/default/src/year2023/day08/mod.rs) and [their "converts"](https://github.com/chrismo80/advent_of_code/blob/default/src/extensions/converter.rs) library. These are the things I need to learn to be better at rust.
+
