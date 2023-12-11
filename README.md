@@ -202,3 +202,14 @@ Not using the cargo build and having a src directory might make this thing grump
 * Recursive strategy failed due to stack depth woes, that is fine, easy fix.
 
 on to step 2!
+
+Okay I would have never solved this in rust. i did a little cheating to read about lowest common demoninator's being used, so I am going to try and solve each **A into each **Z and see where those lovely cycles end up...
+
+AAA -> 21389
+FJA -> 17873
+XPA –> 20803
+DVA -> 23147
+MPA -> 19631
+TDA -> 12599
+
+Then I used least common multiplier to find the total number of trips required until we all got there

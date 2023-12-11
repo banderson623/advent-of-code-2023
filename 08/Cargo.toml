@@ -8,3 +8,15 @@ name = "step-1"
 path = "./s1.rs"
 test = false
 bench = false
+
+[[bin]]
+name = "step-2"
+path = "./s2.rs"
+test = false
+bench = false
+
+[[bin]]
+name = "step-2-again"
+path = "./s2.again.rs"
+test = false
+bench = false
