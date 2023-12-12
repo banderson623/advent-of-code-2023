@@ -223,3 +223,14 @@ When I looked at Rust solutions from Day 8, I saw a lot of very slick string par
 So that was a little better and I have a handle on how rust works, especially memory, collections and iterators.
 Step 1: implement the strategy as shown in the example. I used recursion.
 Step 2: was too simple. reverse the input numbers and it all worked.
+
+# Day 10
+
+Let's do some pipes! And some C++
+I installed GCP `brew install gcc gdb` and then made sure I had too `clang`. I was going all in with vscode stuff, and I might. But for now I am going to be working on a faster nodemon watcher loop
+
+
+normal command: `g++ -Wall -Wextra -g3 ./s1.cpp -o ./output/s1 && ./output/s1`
+nodemon command: `nodemon --exec "g++ -Wall -Wextra -g3 ./s1.cpp -o ./output/s1 && ./output/s1" s1.cpp`
+
+Alright got some file reading of this grid going on :)
