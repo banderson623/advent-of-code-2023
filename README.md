@@ -220,3 +220,6 @@ Okay this is a super fun problem.
 
 When I looked at Rust solutions from Day 8, I saw a lot of very slick string parsing patterns and borrowed heavily from [this example](https://github.com/chrismo80/advent_of_code/blob/default/src/year2023/day08/mod.rs) and [their "converts"](https://github.com/chrismo80/advent_of_code/blob/default/src/extensions/converter.rs) library. These are the things I need to learn to be better at rust.
 
+So that was a little better and I have a handle on how rust works, especially memory, collections and iterators.
+Step 1: implement the strategy as shown in the example. I used recursion.
+Step 2: was too simple. reverse the input numbers and it all worked.
